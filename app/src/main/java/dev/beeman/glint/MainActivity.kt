@@ -286,7 +286,7 @@ private fun WallpaperTile(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .aspectRatio(0.72f)
+                            .aspectRatio(0.63f)
                             .background(MaterialTheme.colorScheme.surfaceVariant),
                     ) {
                         Text(
@@ -304,7 +304,7 @@ private fun WallpaperTile(
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .aspectRatio(0.72f),
+                            .aspectRatio(0.63f),
                     )
                 }
 
@@ -312,7 +312,7 @@ private fun WallpaperTile(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .aspectRatio(0.72f)
+                            .aspectRatio(0.63f)
                             .background(MaterialTheme.colorScheme.surfaceVariant),
                     )
                 }
