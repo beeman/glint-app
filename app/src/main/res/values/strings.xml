@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Glint</string>
+    <string name="preview_unavailable">Preview unavailable</string>
+    <string name="refresh">Refresh</string>
+    <string name="set_wallpaper_error">Could not set wallpaper</string>
+    <string name="setting_wallpaper">Setting wallpaper...</string>
+    <string name="wallpaper_set">Wallpaper set</string>
+    <plurals name="wallpaper_count">
+        <item quantity="one">%d wallpaper</item>
+        <item quantity="other">%d wallpapers</item>
+    </plurals>
 </resources>

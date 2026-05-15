@@ -8,8 +8,10 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
+/.signing/
 /build
 /captures
 .externalNativeBuild
 .cxx
 local.properties
+signing.properties
