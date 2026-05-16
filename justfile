@@ -13,6 +13,9 @@ build-debug:
 build-release:
     ./gradlew :app:assembleRelease
 
+bump-version bump:
+    ./gradlew bumpVersion -Pbump={{bump}}
+
 check:
     ./gradlew :app:assembleDebug :app:ktlintCheck :app:lint :app:testDebugUnitTest
 
