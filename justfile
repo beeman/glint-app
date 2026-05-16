@@ -11,7 +11,16 @@ build-release:
     ./gradlew :app:assembleRelease
 
 check:
-    ./gradlew :app:testDebugUnitTest :app:assembleDebug
+    ./gradlew :app:assembleDebug :app:ktlintCheck :app:lint :app:testDebugUnitTest
+
+format:
+    ./gradlew :app:ktlintFormat
+
+hooks-install:
+    ./gradlew lefthookInstall
+
+hooks-version:
+    ./gradlew lefthookVersion
 
 install-debug:
     adb install -r app/build/outputs/apk/debug/app-debug.apk

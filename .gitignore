@@ -7,7 +7,9 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.lefthook/
 .DS_Store
+lefthook-local.yml
 /.signing/
 /build
 /captures

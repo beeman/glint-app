@@ -2,6 +2,7 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.ktlint)
     alias(libs.plugins.kotlin.compose)
 }
 
@@ -15,7 +16,7 @@ val hasReleaseSigning = listOf(
     "keyAlias",
     "keyPassword",
     "storeFile",
-    "storePassword",
+    "storePassword"
 ).all { key -> !signingProperties.getProperty(key).isNullOrBlank() }
 
 android {

@@ -28,7 +28,7 @@ class CachedWallpaperProvider : ContentProvider() {
         projection: Array<out String>?,
         selection: String?,
         selectionArgs: Array<out String>?,
-        sortOrder: String?,
+        sortOrder: String?
     ): Cursor {
         val file = cachedFile(uri)
         val columns = projection ?: arrayOf(OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE)
@@ -52,7 +52,7 @@ class CachedWallpaperProvider : ContentProvider() {
         uri: Uri,
         values: ContentValues?,
         selection: String?,
-        selectionArgs: Array<out String>?,
+        selectionArgs: Array<out String>?
     ): Int = 0
 
     private fun cachedFile(uri: Uri): File {

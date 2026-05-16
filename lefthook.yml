@@ -1,0 +1,6 @@
+pre-commit:
+  commands:
+    ktlint: {run: './gradlew :app:ktlintCheck'}
+pre-push:
+  commands:
+    check: {run: just check}

@@ -1,14 +1,14 @@
 package dev.beeman.glint
 
-import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import org.json.JSONObject
 
 data class WallpaperItem(
     val imageUrl: String,
     val name: String,
     val previewUrl: String,
-    val slug: String,
+    val slug: String
 )
 
 const val WALLPAPER_MANIFEST_URL =
@@ -22,7 +22,7 @@ fun parseWallpaperCatalog(json: String): List<WallpaperItem> {
             imageUrl = item.getString("imageUrl"),
             name = item.getString("name"),
             previewUrl = item.getString("previewUrl"),
-            slug = item.getString("slug"),
+            slug = item.getString("slug")
         )
     }
 }

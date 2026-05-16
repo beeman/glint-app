@@ -13,7 +13,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,6 +36,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -48,12 +48,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import dev.beeman.glint.ui.theme.GlintTheme
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
     private var error by mutableStateOf<String?>(null)
@@ -79,7 +79,7 @@ class MainActivity : ComponentActivity() {
                     onSelect = ::setWallpaper,
                     settingWallpaperSlug = settingWallpaperSlug,
                     thumbnailReloadKey = thumbnailReloadKey,
-                    wallpapers = wallpapers,
+                    wallpapers = wallpapers
                 )
             }
         }
@@ -178,13 +178,11 @@ class MainActivity : ComponentActivity() {
         Toast.makeText(this, R.string.wallpaper_set, Toast.LENGTH_SHORT).show()
     }
 
-    private fun tryStartActivity(intent: Intent): Boolean {
-        return try {
-            startActivity(intent)
-            true
-        } catch (exception: ActivityNotFoundException) {
-            false
-        }
+    private fun tryStartActivity(intent: Intent): Boolean = try {
+        startActivity(intent)
+        true
+    } catch (exception: ActivityNotFoundException) {
+        false
     }
 }
 
@@ -196,7 +194,7 @@ fun GlintScreen(
     onSelect: (WallpaperItem) -> Unit,
     settingWallpaperSlug: String?,
     thumbnailReloadKey: Int,
-    wallpapers: List<WallpaperItem>,
+    wallpapers: List<WallpaperItem>
 ) {
     val isSettingWallpaper = settingWallpaperSlug != null
     val resources = LocalContext.current.resources
@@ -212,19 +210,19 @@ fun GlintScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
                     style = MaterialTheme.typography.headlineMedium,
-                    text = stringResource(id = R.string.app_name),
+                    text = stringResource(id = R.string.app_name)
                 )
                 Button(
                     enabled = !isLoading && !isSettingWallpaper,
-                    onClick = onRefresh,
+                    onClick = onRefresh
                 ) {
                     Text(text = stringResource(id = R.string.refresh))
                 }
@@ -237,15 +235,15 @@ fun GlintScreen(
                     text = resources.getQuantityString(
                         R.plurals.wallpaper_count,
                         wallpapers.size,
-                        wallpapers.size,
-                    ),
+                        wallpapers.size
+                    )
                 )
             }
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(wallpapers) { wallpaper ->
                     WallpaperTile(
@@ -253,7 +251,7 @@ fun GlintScreen(
                         isSetting = settingWallpaperSlug == wallpaper.slug,
                         onSelect = onSelect,
                         thumbnailReloadKey = thumbnailReloadKey,
-                        wallpaper = wallpaper,
+                        wallpaper = wallpaper
                     )
                 }
             }
@@ -267,12 +265,12 @@ private fun GlintLaunchScreen() {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
-            .fillMaxSize(),
+            .fillMaxSize()
     ) {
         Image(
             contentDescription = null,
             modifier = Modifier.size(96.dp),
-            painter = painterResource(id = R.drawable.splash_icon),
+            painter = painterResource(id = R.drawable.splash_icon)
         )
     }
 }
@@ -283,7 +281,7 @@ private fun WallpaperTile(
     isSetting: Boolean,
     onSelect: (WallpaperItem) -> Unit,
     thumbnailReloadKey: Int,
-    wallpaper: WallpaperItem,
+    wallpaper: WallpaperItem
 ) {
     var thumbnailState by remember(wallpaper.previewUrl) {
         mutableStateOf<ThumbnailState>(ThumbnailState.Loading)
@@ -301,7 +299,7 @@ private fun WallpaperTile(
     Card(
         modifier = Modifier.clickable(enabled = isEnabled) {
             onSelect(wallpaper)
-        },
+        }
     ) {
         Column {
             when (val state = thumbnailState) {
@@ -311,12 +309,12 @@ private fun WallpaperTile(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(0.63f)
-                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                            .background(MaterialTheme.colorScheme.surfaceVariant)
                     ) {
                         Text(
                             modifier = Modifier.padding(12.dp),
                             style = MaterialTheme.typography.bodySmall,
-                            text = stringResource(id = R.string.preview_unavailable),
+                            text = stringResource(id = R.string.preview_unavailable)
                         )
                     }
                 }
@@ -328,7 +326,7 @@ private fun WallpaperTile(
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .aspectRatio(0.63f),
+                            .aspectRatio(0.63f)
                     )
                 }
 
@@ -337,7 +335,7 @@ private fun WallpaperTile(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(0.63f)
-                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                            .background(MaterialTheme.colorScheme.surfaceVariant)
                     )
                 }
             }
@@ -345,7 +343,13 @@ private fun WallpaperTile(
             Text(
                 modifier = Modifier.padding(12.dp),
                 style = MaterialTheme.typography.titleSmall,
-                text = if (isSetting) stringResource(id = R.string.setting_wallpaper) else wallpaper.name,
+                text = if (isSetting) {
+                    stringResource(
+                        id = R.string.setting_wallpaper
+                    )
+                } else {
+                    wallpaper.name
+                }
             )
         }
     }
@@ -359,16 +363,14 @@ private sealed interface ThumbnailState {
     data object Failed : ThumbnailState
 }
 
-private fun fetchImageBitmap(url: String): ImageBitmap? {
-    return runCatching {
-        val connection = URL(url).openConnection() as HttpURLConnection
-        connection.connectTimeout = 10_000
-        connection.readTimeout = 20_000
-        connection.inputStream.use { input ->
-            BitmapFactory.decodeStream(input)?.asImageBitmap()
-        }
-    }.getOrNull()
-}
+private fun fetchImageBitmap(url: String): ImageBitmap? = runCatching {
+    val connection = URL(url).openConnection() as HttpURLConnection
+    connection.connectTimeout = 10_000
+    connection.readTimeout = 20_000
+    connection.inputStream.use { input ->
+        BitmapFactory.decodeStream(input)?.asImageBitmap()
+    }
+}.getOrNull()
 
 @Preview(showBackground = true)
 @Composable
@@ -386,15 +388,15 @@ fun GlintScreenPreview() {
                     imageUrl = "https://example.test/wallpapers/solana-gradient.png",
                     name = "Solana Gradient",
                     previewUrl = "https://example.test/previews/solana-gradient.png",
-                    slug = "solana-gradient",
+                    slug = "solana-gradient"
                 ),
                 WallpaperItem(
                     imageUrl = "https://example.test/wallpapers/solana-lights.png",
                     name = "Solana Lights",
                     previewUrl = "https://example.test/previews/solana-lights.png",
-                    slug = "solana-lights",
-                ),
-            ),
+                    slug = "solana-lights"
+                )
+            )
         )
     }
 }

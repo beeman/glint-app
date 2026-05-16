@@ -1,8 +1,7 @@
 package dev.beeman.glint
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class ExampleUnitTest {
     @Test
@@ -24,8 +23,14 @@ class ExampleUnitTest {
 
         assertEquals(1, wallpapers.size)
         assertEquals("Solana Gradient", wallpapers.first().name)
-        assertEquals("https://example.test/wallpapers/solana-gradient.png", wallpapers.first().imageUrl)
-        assertEquals("https://example.test/previews/solana-gradient.png", wallpapers.first().previewUrl)
+        assertEquals(
+            "https://example.test/wallpapers/solana-gradient.png",
+            wallpapers.first().imageUrl
+        )
+        assertEquals(
+            "https://example.test/previews/solana-gradient.png",
+            wallpapers.first().previewUrl
+        )
         assertEquals("solana-gradient", wallpapers.first().slug)
     }
 

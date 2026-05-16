@@ -9,6 +9,8 @@ activityCompose = "1.8.0"
 kotlin = "2.2.10"
 composeBom = "2026.02.01"
 json = "20240303"
+ktlint = "14.2.0"
+lefthook = "0.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,4 +31,6 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+lefthook = { id = "com.fizzpod.lefthook", version.ref = "lefthook" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

@@ -34,6 +34,18 @@ Run unit tests:
 just test
 ```
 
+Format Kotlin sources:
+
+```bash
+just format
+```
+
+Install Git hooks:
+
+```bash
+just hooks-install
+```
+
 Build and test the debug app:
 
 ```bash
