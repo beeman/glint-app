@@ -4,6 +4,9 @@ set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 default:
     just --list
 
+assets-generate:
+    ./assets/generate-assets.sh
+
 build-debug:
     ./gradlew :app:assembleDebug
 
